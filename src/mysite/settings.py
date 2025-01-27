@@ -92,8 +92,6 @@ import shutil
 if not os.path.exists(os.path.join('/tmp', 'db.sqlite3')):
     shutil.copy(os.path.join(BASE_DIR, 'db.sqlite3'), '/tmp/db.sqlite3')
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
