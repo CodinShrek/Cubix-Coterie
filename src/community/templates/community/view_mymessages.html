@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style type="text/css">
+	.card{
+		max-width: 700px;
+        
+	}
+    p    {color: black;}
+	.container{
+		padding:20px;
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+
+		<div class="card m-auto">
+            <div class="card-body mt-2 mb-2">
+                <h2 class="card-title">{{community_chat.subject}}</h2>
+                <p class="card-text">{{community_chat.content|safe}}</p>
+			<video video width="500" height="500" controls class="card m-auto" src="{{community_chat.video.url}}">
+
+			</div>
+			<div class="card-footer text-muted">
+			  Posted on {{community_chat.video_details}} by {{community_chat.user}}
+			</div>
+		</div>
+
+	</div>
+</div>
+
+	
+
+{% endblock content %}

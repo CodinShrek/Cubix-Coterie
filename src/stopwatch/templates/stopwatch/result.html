@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Congratulations On Solving The 3x3 Rubix Cube In:</h1>
+<h1>{% for entry in entries%}
+    {{ entry.duration }}
+    {% endfor %}
+
+{% endblock content %}
+
+

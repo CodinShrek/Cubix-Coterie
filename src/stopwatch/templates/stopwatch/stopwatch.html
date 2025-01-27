@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<center>
+    <h1>Stop Watch</h1>
+    <h3><a style="text-decoration:none" class='p2' href ='stopwatch/start'>Start</a><h3>
+    <h3><a style="text-decoration:none" class='p2' href ='stopwatch/stop'>Stop</a><h3>
+    <h3><a style="text-decoration:none" class='p2' href ='stopwatch/history'>Reveal History</a><h3>
+
+        {% if messages %}
+        <script>
+            {% for message in messages %}
+                alert("{{ message.tags|capfirst }}: {{ message|escapejs }}");
+            {% endfor %}
+        </script>
+    {% endif %}
+    
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+
+
+
+
+<form method="post" action="{% url 'start' %}">
+    {% csrf_token %}
+    <button type="submit" autofocus>Start Stopwatch (Press Enter)</button>
+</form>
+
+<!-- Stop Stopwatch Form -->
+<form method="post" action="{% url 'stop' %}">
+    {% csrf_token %}
+    <button type="submit" autofocus>Stop Stopwatch (Press Enter)</button>
+</form>
+
+<!-- Display any messages -->
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+{% endblock content %}

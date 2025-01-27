@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block design %}
+    <style>
+        /* Import a modern Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Apply Google font and general reset */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+
+        /* Leaderboard Wrapper */
+        .leaderboard-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+
+        /* Enhanced leaderboard container */
+        .leaderboard-container {
+            width: 100%;
+            max-width: 700px;
+            background-color: rgba(44, 44, 44, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Header styling */
+        h1 {
+            font-size: 42px;
+            color: #00e6e6;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        /* Ordered list styling */
+        ol {
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        /* List item styling */
+        li {
+            background-color: #333;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 24px;
+            color: #00e6e6;
+            border: 1px solid #00e6e6;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Hover effects for the list items */
+        li:hover {
+            background-color: #00e6e6;
+            color: #333;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Time styling on the right */
+        .time {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        /* No users found message */
+        .no-users {
+            font-size: 22px;
+            color: #ff4c4c;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+{% endblock design %}
+
+{% block content %}
+    <div class="leaderboard-wrapper">
+        <div class="leaderboard-container">
+            <h1>Leaderboard</h1>
+            <ol>
+                {% for user in users_with_first_duration %}
+                <li>
+                    <span>{{ forloop.counter }}. {{ user.username }}</span>
+                    <span class="time">{{ user.first_duration.total_seconds|floatformat:2 }} seconds</span>
+                </li>
+                {% empty %}
+                <li class="no-users">No users found.</li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+{% endblock content %}

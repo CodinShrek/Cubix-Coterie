@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block design %}
+            
+{% endblock design %}
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		
+			<form class="create-form" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+				<!-- title -->
+				<div class="form-group">
+					<label for="id_subject">Title</label>
+					<input class="form-control" type="text" name="subject" id="id_subject" placeholder="Subject" required autofocus>
+				</div>
+
+				<!-- Body -->
+				<div class="form-group">
+					<label for="id_content">Content</label>
+					<textarea class="form-control" rows="10" type="text" name="content" id="id_body" placeholder="Content" required></textarea>
+				</div>
+
+				<!-- Image -->
+				<div class="form-group">
+					<label for="id_video">Video</label>
+					<input  type="file" name="video" id="id_video" accept="video/*" required>
+				</div>
+
+				<!-- Submit btn -->
+				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+			</form>	
+		</div>
+	</div>
+</div>
+
+
+
+
+{% endblock content %}

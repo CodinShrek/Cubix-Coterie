@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<script>
+    $(document).ready(function() {
+        $(document).keydown(function(event) {
+            // Trigger on any key press, you can customize the key
+            var actionUrl = event.keyCode === 32 /* specific key code */ ? 'start' : 'stop';
+
+            $.ajax({
+                url: actionUrl,
+                method: 'GET',
+                success: function(response) {
+                    // Handle the response if needed
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

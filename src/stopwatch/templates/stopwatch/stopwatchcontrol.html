@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+</head>
+<body>
+
+<center>
+<h1>Stopwatch</h1>
+
+<!-- Start Stopwatch Form -->
+<form id="startForm" method="post" action="{% url 'start' %}">
+    {% csrf_token %}
+    <button type="submit">Start Stopwatch (Press Enter)</button>
+</form>
+
+<!-- Stop Stopwatch Form -->
+<form id="stopForm" method="post" action="{% url 'stop' %}">
+    {% csrf_token %}
+    <button type="submit">Stop Stopwatch (Press Space)</button>
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<script>
+    // Add event listener for keydown events
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            // Trigger the start form submission when Enter is pressed
+            event.preventDefault(); // Prevent default form submission behavior
+            document.getElementById('startForm').submit();
+        } else if (event.key === ' ') {
+            // Trigger the stop form submission when Space is pressed
+            event.preventDefault(); // Prevent default space bar scrolling
+            document.getElementById('stopForm').submit();
+        }
+    });
+</script>
+<h3><a style="text-decoration:none" class='p2' href ='stopwatch/history'>Reveal History</a><h3>
+</center>
+
+</body>
+{% endblock content %}

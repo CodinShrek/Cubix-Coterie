@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {background-color:firebrick;}
+            header {
+                border: 10px;
+                background-color:cadetblue;
+                text-allign:center; 
+                font-size: 40px;
+                color: crimson }
+            h1   {color: darkturquoise;}
+            p    {color: darkblue;}
+
+            {% block design %}
+            sidebar {
+                background-color: black;
+                float: left;
+                width: 20%;
+                height: 100vh;}
+
+            content {
+                float: left;
+                width: 80%;
+                height: 100vh;
+                font-size: 25px;
+            }
+
+            (max-width: 650px) {
+                sidebar, content {
+                    width: 100%;
+                    height: auto;
+                }
+                }
+            section::after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                 }
+                
+                 sidebar ul {
+                    list-style-type: none;
+                    padding: 0;
+                  }
+        </style>
+        <title>Cubix Coterie</title>
+        {% endblock design %}
+    </head>
+
+    <body>
+        {% block content %}
+        <center>
+        
+            <h1 class = 'p-3'>Cubix Coterie</h1>
+        
+        </center>
+        <section>
+            <sidebar>
+                <ul>
+                    <center>
+                    <h2>Menu<h2>
+                        {% if request.user.is_authenticated %}
+                        <li> <a style="text-decoration:none" class = 'p-2' href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
+                        <li><a style="text-decoration:none" class = 'p-2' href="/user/login">Login</a></li>
+                        <li><a style="text-decoration:none" class = 'p-2' href= "/user/signup">Sign Up</a></li>
+                        {% endif %}
+                        <li> <a style="text-decoration:none" class = 'p-2' href="/community">Community</a></li>
+                    </center>
+
+
+                </ul>
+            </sidebar>
+
+            <content>
+                <center>
+                    <h2>Welcome To The World Of Cubing</h2>
+                </center>
+                <p>
+                    Welcome to Cubix Coterie, the ultimate web application designed exclusively for cubing enthusiasts! Whether you're a beginner just learning to solve your first cube or an advanced speedcuber, Cubix Coterie offers a vibrant platform to enhance your cubing journey. With an account, you can time your solves and track personal progress. Beyond solo practice, We foster a dynamic community where cubers worldwide connect, share tips, and celebrate achievements. Dive into leaderboards, join lively discussions, and be part of a growing network passionate about the art and science of cubing!</p>
+                <p>We Offer:</p>
+                {% if request.user.is_authenticated %}
+                    <p><a style="text-decoration:none" class = 'p-2'  href = "/stopwatch">1. Timing Your Cubing</a></p>
+                    <p><a style="text-decoration:none" class = 'p-2'  href = "/stopwatch/personalbests">2. Recording Your Personal Bests</a></p>
+                    <p><a style="text-decoration:none" class = 'p-2'  href = "/stopwatch/leaderboard">3. Centralized Leaderboard Of All Members</a></p>
+                {% else %}
+                <p><a style="text-decoration:none" class = 'p-2' href="/user/login">1. Timing Your Cubing</a></p>
+                <p><a style="text-decoration:none" class = 'p-2'  href = "/user/login">2. Recording Your Personal Bests</a></p>
+                <p><a style="text-decoration:none" class = 'p-2'  href = "/user/login">3. Centralized Leaderboard Of All Members</a></p>
+    
+                {% endif %}
+            {% endblock content %}
+    </body>
+
+</html>

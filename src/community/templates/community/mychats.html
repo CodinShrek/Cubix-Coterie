@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block design %}
+            
+{% endblock design %}
+{% block content %}
+<div class="container mt-4 p-4">
+    <div class="row">
+      <div class='community_chat'>
+        <h3 class="mb-3 font-weight-normal">Your Messages:</h3>
+        {% if community_chat %}
+          <ul class="list-group">
+          {% for post in community_chat %}
+            <a href="{% url 'view-mymessages' post.slug %}" style="text-decoration: none;"><li class="list-group-item">{{post}}</li></a>
+          {% endfor %}
+          </ul>
+        {% else %}
+          <p>You have no Messages in the Community. Create one <a style="text-decoration: none;" href='create'>here</a>.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  
+  {% endblock content %}

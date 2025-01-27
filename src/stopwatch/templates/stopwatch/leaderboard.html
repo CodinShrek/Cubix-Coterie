@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<style>
+    tr {
+        color: white;
+    }
+</style>
+<center>
+    <h2 class = 'p4'>Cubing Results</h2>
+    <table>
+    <tr>
+        <th class = 'p-2'>UserName</th>
+        <th class = 'p-2'>Duration</th>
+    </tr>
+    {% for entry in entries %}
+        <tr>
+        <td class = 'p-2'>{{ entry.user.username }}</td>  
+        <td class = 'p-2'>{{ entry.duration.total_seconds|floatformat:2}} seconds</td>
+        </tr>
+    {% endfor %}
+    </table>
+</center>
+{% endblock %}
